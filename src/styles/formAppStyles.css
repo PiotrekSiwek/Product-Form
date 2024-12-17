@@ -1,0 +1,107 @@
+body {
+  background: #ece9e6; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to left,
+    #ece9e6,
+    #ffffff
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #ece9e6, #ffffff);
+}
+
+.responsive-height {
+  height: 100vh;
+}
+
+.content-bg {
+  box-shadow: 2px -2px 24px -10px rgba(66, 68, 90, 1);
+  background-color: #fff;
+}
+
+@media (min-width: 576px) {
+  .responsive-height {
+    height: 90vh;
+  }
+}
+
+@media (max-width: 576px) {
+  body {
+  background: #ffffff;
+  }
+  .content-bg {
+    box-shadow: none;
+    background-color: #ffffff;
+  }
+}
+
+.container {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+#productTitle {
+  padding: 12px 15px;
+}
+
+.form-control::placeholder {
+  font-style: italic;
+}
+
+.form-control.is-invalid {
+  border: 1px solid red;
+}
+
+div[data-placeholder="Description"] {
+  font-size: 1rem;
+  font-family: "system-ui";
+}
+
+.ql-snow {
+  border: 1px solid #dee2e6 !important;
+  border-radius: 0.25rem;
+  margin-bottom: 1px;
+}
+
+.ql-editor {
+  border: 1px solid #dee2e6 !important;
+  border-radius: 0.25rem;
+}
+
+.ql-editor:focus,
+.form-control:focus {
+  border: 1px solid #007bff !important;
+  border-radius: 0.25rem;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25) !important;
+}
+
+.ql-container.ql-snow {
+  border: 0 !important;
+}
+
+button.btn-close {
+  display: none;
+}
+
+.content-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.drag-btn {
+  margin-right: 20px;
+  font-size: 20px;
+  font-weight: bolder;
+}
+
+.bin-btn {
+  height: 30px;
+  margin-left: 30px;
+}
+
+.input-bottom-border {
+  border-bottom: 1px solid #dee2e6;
+  border-radius: 0 !important;
+  border-top: 0 !important;
+  border-left: 0 !important;
+  border-right: 0 !important;
+}
