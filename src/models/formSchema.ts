@@ -8,3 +8,5 @@ export const formSchema = z.object({
   productStatus: z.union([z.string(), z.null(), z.undefined()]),
   productBulletsPoints: z.array(z.object({ bulletPoint: z.string() })),
 });
+
+export type FormData = z.infer<typeof formSchema>;

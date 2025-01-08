@@ -1,8 +1,15 @@
-import React, { forwardRef, useEffect, useLayoutEffect, useRef } from "react";
-import Quill from "quill";
+import { forwardRef, MutableRefObject, PropsWithChildren, useEffect, useLayoutEffect, useRef } from "react";
+import Quill, { Delta } from "quill";
 
-const Editor = forwardRef(({ onTextChange, setEditorValue }, ref) => {
-  const containerRef = useRef(null);
+type TextChangeHandler = (delta: Delta, oldContents: Delta, context: any) => any
+
+interface EditorProps {
+  onTextChange?: TextChangeHandler;
+  setEditorValue: (value: string) => void;
+}
+
+const Editor = forwardRef<HTMLDivElement, PropsWithChildren<EditorProps>>(({ onTextChange, setEditorValue }, ref) => {
+  const containerRef = useRef<HTMLDivElement>(null);
   const onTextChangeRef = useRef(onTextChange);
 
   useLayoutEffect(() => {
@@ -11,6 +18,7 @@ const Editor = forwardRef(({ onTextChange, setEditorValue }, ref) => {
 
   useEffect(() => {
     const container = containerRef.current;
+    if (!container) return;
     const editorContainer = container.appendChild(
       container.ownerDocument.createElement("div"),
     );
@@ -22,15 +30,17 @@ const Editor = forwardRef(({ onTextChange, setEditorValue }, ref) => {
       },
     });
 
-    ref.current = quill;
+    if (ref && typeof ref === 'object'){
+    (ref as MutableRefObject<Quill | null>).current = quill;
 
+    }
     quill.on(Quill.events.TEXT_CHANGE, (...args) => {
       const content = quill.root.innerHTML;
       setEditorValue(content);
     });
 
     return () => {
-      ref.current = null;
+      (ref as MutableRefObject<Quill | null>).current = null;
       container.innerHTML = "";
     };
   }, [ref, setEditorValue]);

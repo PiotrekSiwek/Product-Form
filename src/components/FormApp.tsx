@@ -1,14 +1,14 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect, useRef, useState } from "react";
-import CreatableSelect from "react-select/creatable";
+import { useEffect, useRef, useState, ReactElement } from "react";
+import Select from 'react-select'
 import { Controller, useFieldArray, useForm } from "react-hook-form";
 import { Notify } from "./Toast";
-import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd";
+import { DragDropContext, Draggable, Droppable, DropResult } from "@hello-pangea/dnd";
 import Spinner from "react-bootstrap/Spinner";
 import { Button, Container, Form } from "react-bootstrap";
 import Editor from "./Editor";
 import { productOptions } from "../data/productOptions";
-import { formSchema } from "../models/formSchema";
+import { formSchema, FormData } from "../models/formSchema";
 import { selectStyles } from "../styles/creatableSelectStyles";
 
 import "../styles/formAppStyles.css";
@@ -16,7 +16,7 @@ import "quill/dist/quill.snow.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-function FormApp() {
+function FormApp(): ReactElement {
   const {
     register,
     handleSubmit,
@@ -24,7 +24,7 @@ function FormApp() {
     setValue,
     control,
     watch,
-  } = useForm({
+  } = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: { productTitle: "" },
   });
@@ -36,16 +36,16 @@ function FormApp() {
 
   const watchFieldArray = watch("productBulletsPoints");
 
-  const [editorValue, setEditorValue] = useState("");
-  const [showNotify, setShowNotify] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const quillRef = useRef();
+  const [editorValue, setEditorValue] = useState<string>("");
+  const [showNotify, setShowNotify] = useState<boolean>(false);
+  const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+  const quillRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setValue("description", editorValue);
   }, [editorValue, setValue]);
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: FormData) => {
     console.log("data", data);
     simulateApiResponse();
   };
@@ -54,7 +54,7 @@ function FormApp() {
     window.location.reload();
   };
 
-  const handleDrag = ({ source, destination }) => {
+  const handleDrag = ({ source, destination }: DropResult) => {
     if (destination) {
       move(source.index, destination.index);
     }
@@ -85,7 +85,7 @@ function FormApp() {
           <Container className="p-4 mb-4 bg-white mt-3">
             <Form>
               <Form.Group className="mb-4" controlId="productTitle">
-                <Form.Label>Product title</Form.Label>
+                <Form.Label>Product Title</Form.Label>
                 <Controller
                   name="productTitle"
                   control={control}
@@ -93,7 +93,7 @@ function FormApp() {
                     <Form.Control
                       {...field}
                       type="text"
-                      placeholder="Product title"
+                      placeholder="Product Title"
                       isInvalid={!!errors.productTitle}
                     />
                   )}
@@ -110,12 +110,12 @@ function FormApp() {
                 </div>
               </Form.Group>
               <Form.Group className="mb-4" controlId="productKeywords">
-                <Form.Label>Product Keywords</Form.Label>
+                <Form.Label>Product Status</Form.Label>
                 <Controller
                   name="productStatus"
                   control={control}
                   render={({ field }) => (
-                    <CreatableSelect
+                    <Select
                       id="productStatus-creatable"
                       {...field}
                       isClearable
@@ -131,13 +131,13 @@ function FormApp() {
                           selectedOption ? selectedOption.value : null,
                         );
                       }}
-                      placeholder="Product status"
+                      placeholder="Product Status"
                     />
                   )}
                 />
               </Form.Group>
               <Container className="mb-2 d-flex justify-content-between align-items-center">
-                <Form.Label>Product Key Points</Form.Label>
+                <Form.Label>Product Bullet Points</Form.Label>
                 <Button
                   className="py-0 px-2"
                   style={{ height: "30px" }}

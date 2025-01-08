@@ -4,19 +4,19 @@
   "private": true,
   "homepage": "./",
   "dependencies": {
-    "@hello-pangea/dnd": "^17.0.0",
-    "@hookform/resolvers": "^3.9.1",
-    "bootstrap": "^5.3.3",
-    "bootstrap-icons": "^1.11.3",
+    "@hello-pangea/dnd": "17.0.0",
+    "@hookform/resolvers": "3.9.1",
+    "bootstrap": "5.3.3",
+    "bootstrap-icons": "1.11.3",
     "cra-template": "1.2.0",
-    "quill": "^2.0.3",
-    "react": "^18.3.1",
-    "react-bootstrap": "^2.10.6",
-    "react-dom": "^18.3.1",
-    "react-hook-form": "^7.54.1",
+    "quill": "2.0.3",
+    "react": "18.3.1",
+    "react-bootstrap": "2.10.6",
+    "react-dom": "18.3.1",
+    "react-hook-form": "7.54.1",
     "react-scripts": "5.0.1",
-    "react-select": "^5.9.0",
-    "zod": "^3.24.1"
+    "react-select": "5.9.0",
+    "zod": "3.24.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -44,7 +44,11 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "prettier": "3.4.2"
+    "@babel/plugin-proposal-private-property-in-object": "7.21.11",
+    "@types/react": "18.3.18",
+    "@types/react-dom": "18.3.5",
+    "@types/react-select": "5.0.1",
+    "prettier": "3.4.2",
+    "typescript": "5.7.2"
   }
 }

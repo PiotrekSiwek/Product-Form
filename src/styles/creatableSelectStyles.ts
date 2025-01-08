@@ -1,4 +1,6 @@
-export const selectStyles = {
+import { StylesConfig } from "react-select";
+
+export const selectStyles:  StylesConfig<any, false> = {
   placeholder: (provided) => ({
     ...provided,
     fontStyle: "italic",

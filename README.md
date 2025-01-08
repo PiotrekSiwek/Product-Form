@@ -1,7 +1,7 @@
 # Add Product Form
 Form for providing product details like name, description, state and bullet points.
 Product description can be formatted as it is a text editor field. 
-Product bullet points are a list with dynamically added fields and drag'n drop sorting feature.
+Product bullet points are a list with dynamically added fields and with drag'n drop sorting feature.
 
 
 ## Created with:
@@ -11,7 +11,8 @@ Product bullet points are a list with dynamically added fields and drag'n drop s
 - React Select, 
 - React Dnd,
 - Quill,
-- ZOD
+- ZOD,
+- Typescript
 
 
 ## Installation

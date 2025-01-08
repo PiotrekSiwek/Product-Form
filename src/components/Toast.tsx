@@ -1,7 +1,13 @@
 import Toast from "react-bootstrap/Toast";
 import { Button, ToastContainer } from "react-bootstrap";
+import { FC } from "react";
 
-export const Notify = ({ showNotify, closeNotify }) => {
+interface NotifyProps {
+  showNotify: boolean;
+  closeNotify: () => void
+}
+
+export const Notify: FC<NotifyProps> = ({ showNotify, closeNotify }) => {
   return (
     <ToastContainer position={"middle-center"}>
       <Toast show={showNotify} onClose={closeNotify}>
